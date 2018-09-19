@@ -2,9 +2,12 @@ package br.com.cmabreu.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -25,9 +28,27 @@ public class Atleta {
 	@Column(name = "identidade", length = 100, nullable = false)
 	private String identidade;
 
+	@Column(name = "cpf", length = 20, nullable = false)
+	private String cpf;
+
 	@Column(name = "data_nascimento", length = 10, nullable = false)
 	private String dataNascimento;
+
+	@Column(name = "data_admissao", length = 10, nullable = false)
+	private String dataAdmissao;
+
+	@Column(name = "modalidade", length = 100, nullable = false)
+	private String modalidade;
 	
+	@Column(name = "posicao", length = 100, nullable = false)
+	private String posicao;
+	
+	@Column(name = "matricula", length = 10, nullable = false)
+	private String matricula;
+	
+	@ManyToOne()
+	@JoinColumn(name="atleta_id", foreignKey = @ForeignKey(name = "fk_empresa_atleta"))
+	private Empresa empresa;
 	
 	public String getDataNascimento() {
 		return dataNascimento;
@@ -67,6 +88,54 @@ public class Atleta {
 
 	public void setIdentidade(String identidade) {
 		this.identidade = identidade;
+	}
+
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getDataAdmissao() {
+		return dataAdmissao;
+	}
+
+	public void setDataAdmissao(String dataAdmissao) {
+		this.dataAdmissao = dataAdmissao;
+	}
+
+	public String getModalidade() {
+		return modalidade;
+	}
+
+	public void setModalidade(String modalidade) {
+		this.modalidade = modalidade;
+	}
+
+	public String getPosicao() {
+		return posicao;
+	}
+
+	public void setPosicao(String posicao) {
+		this.posicao = posicao;
+	}
+
+	public String getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
 	}	
 	
 	
